@@ -17,8 +17,8 @@ var rectSize = {
   LrectW: 10,
 };
 
-var ballXspeed = 5;
-var ballYspeed = 5;
+var ballXspeed = 4;
+var ballYspeed = 4;
 var hitRightPaddle = false;
 var hitLeftPaddle = false;
 
@@ -29,7 +29,7 @@ var s = keyCode = 83;
 
 var leftscore = 0;
 var rightscore = 0;
-var failsound;
+var failsound, hitsound;
 var SEC = 0;
 var MIN = 0;
 var FPS = 60;
@@ -38,14 +38,15 @@ var R, G, B;
 
 function preload(){
   failsound = loadSound('../main/assets/fail.wav');
+  hitsound = loadSound('../main/assets/hit_sound.wav');
 }
 
 function setup() {
   var canvas =  createCanvas(600, 400);
   canvas.parent('sketch-holder')
-   ballX = random(canvasWidth/2, 150);
-   ballY = random(canvasWidth/2, 150);
-   //timeIt();
+  ballX = random(canvasWidth/2, 150);
+  ballY = random(canvasWidth/2, 150);
+  //timeIt();
 
  }
 
@@ -57,12 +58,7 @@ setInterval(function draw() {
   score();
   paddleInteract();
   randomThings();
-  consoleThings();
 }, 1000/FPS);
-
-function consoleThings(){
-//console.log("ballX:" + ballX + " " + "ballY:" + ballY);
-}
 
 // Time the game
 // function timeIt(){
@@ -93,7 +89,7 @@ function randomThings(){
   stroke(255);
   strokeWeight(0.5);
   fill(255); //R,G,B for multicolor ball
-  ellipse(ballX, ballY, 20, 20);
+  rect(ballX, ballY, 10, 10);
   pop();
 
   //Right
@@ -120,7 +116,7 @@ function randomThings(){
  }
 }
 
-//W_S_arrows_pressed
+//W_S_and_arrows_pressed
 function keysPressed(){
   if (keyIsDown(UP_ARROW)) {
     	rectMove.LMoveY -= 10;
@@ -137,27 +133,23 @@ function randomThings(){
 function paddleInteract(){
  if (rectMove.RMoveY < 0) {
     rectMove.RMoveY += canvasHeight;
-    console.log("Left paddle up");
  }else if (rectMove.RMoveY > canvasHeight) {
     rectMove.RMoveY -= canvasHeight;
-    console.log("Left paddle down");
  }if (rectMove.LMoveY < 0) {
      rectMove.LMoveY += canvasHeight;
-     console.log("Right paddle up");
  }if (rectMove.LMoveY > canvasHeight) {
-      rectMove.LMoveY -= canvasHeight;
-     console.log("Right paddle down");
+     rectMove.LMoveY -= canvasHeight;
      //ballx - ballspeedx < paddleX + paddle width =)
  }
- //hit right paddle
- hitRightPaddle = collideRectCircle(rectMove.RMoveX, rectMove.RMoveY, rectSize.RrectW, rectSize.RrectH, ballX, ballY, 20, 20);
- hitLeftPaddle = collideRectCircle(rectMove.LMoveX, rectMove.LMoveY, rectSize.LrectW, rectSize.LrectH, ballX, ballY, 20, 20);
+
+ hitRightPaddle = collideRectCircle(rectMove.RMoveX, rectMove.RMoveY, rectSize.RrectW, rectSize.RrectH, ballX, ballY, 15, 15);
+ hitLeftPaddle = collideRectCircle(rectMove.LMoveX, rectMove.LMoveY, rectSize.LrectW, rectSize.LrectH, ballX, ballY, 15, 15);
  if (hitRightPaddle) {
    ballXspeed = -ballYspeed;
-   console.log("ball hit left paddle");
+   hitsound.play();
  }else if (hitLeftPaddle) {
    ballXspeed = -ballXspeed;
-   console.log("ball hit right paddle");
+   hitsound.play();
  }
 }
 
