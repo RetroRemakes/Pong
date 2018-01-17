@@ -37,8 +37,8 @@ var FPS = 60;
 var R, G, B;
 
 function preload(){
-  failsound = loadSound('../main/assets/fail.wav');
-  hitsound = loadSound('../main/assets/hit_sound.wav');
+  failsound = loadSound('main/assets/fail.wav');
+  hitsound = loadSound('main/assets/hit_sound.wav');
 }
 
 function setup() {
