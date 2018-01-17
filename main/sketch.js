@@ -11,9 +11,9 @@ var rectMove = {
   LMoveX: 580,
 };
 var rectSize = {
-  RrectH: 80,
+  RrectH: 60,
   RrectW: 10,
-  LrectH: 80,
+  LrectH: 60,
   LrectW: 10,
 };
 
@@ -37,14 +37,14 @@ var FPS = 60;
 var R, G, B;
 
 function preload(){
-  failsound = loadSound('assets/fail.wav');
+  failsound = loadSound('../main/assets/fail.wav');
 }
 
 function setup() {
   var canvas =  createCanvas(600, 400);
   canvas.parent('sketch-holder')
-   ballX = random(width/2, 150);
-   ballY = random(width/2, 150);
+   ballX = random(canvasWidth/2, 150);
+   ballY = random(canvasWidth/2, 150);
    //timeIt();
 
  }
@@ -84,8 +84,8 @@ function randomThings(){
 //Draw everything
 function drawObjects(){
   fill(255)
-  for (var i = 0; i < height; i += 15) {
-    rect(width/2-1, i, 3, 10);
+  for (var i = 0; i < canvasHeight; i += 15) {
+    rect(canvasWidth/2-1, i, 3, 10);
   }
   //rect(width/2, 50, 4, 15);
 
@@ -111,11 +111,11 @@ function randomThings(){
   ballY = ballY + ballYspeed;
   if (ballX < 0) {
      ballXspeed = -ballXspeed;
-  }else if (ballX > width) {
+  }else if (ballX > canvasWidth) {
      ballXspeed = -ballXspeed;
   }else if (ballY < 0) {
     ballYspeed = -ballYspeed;
-  }else if (ballY > height) {
+  }else if (ballY > canvasHeight) {
     ballYspeed = -ballYspeed;
  }
 }
@@ -136,23 +136,27 @@ function randomThings(){
 //Paddle
 function paddleInteract(){
  if (rectMove.RMoveY < 0) {
-    rectMove.RMoveY += 10;
+    rectMove.RMoveY += canvasHeight;
     console.log("Left paddle up");
- }if (rectMove.RMoveY > height/1.4) {
-    rectMove.RMoveY -= 10;
+ }else if (rectMove.RMoveY > canvasHeight) {
+    rectMove.RMoveY -= canvasHeight;
     console.log("Left paddle down");
  }if (rectMove.LMoveY < 0) {
-     rectMove.LMoveY += 10;
+     rectMove.LMoveY += canvasHeight;
      console.log("Right paddle up");
- }if (rectMove.LMoveY > height/1.4) {
-      rectMove.LMoveY -= 10;
+ }if (rectMove.LMoveY > canvasHeight) {
+      rectMove.LMoveY -= canvasHeight;
      console.log("Right paddle down");
      //ballx - ballspeedx < paddleX + paddle width =)
  }
  //hit right paddle
  hitRightPaddle = collideRectCircle(rectMove.RMoveX, rectMove.RMoveY, rectSize.RrectW, rectSize.RrectH, ballX, ballY, 20, 20);
+ hitLeftPaddle = collideRectCircle(rectMove.LMoveX, rectMove.LMoveY, rectSize.LrectW, rectSize.LrectH, ballX, ballY, 20, 20);
  if (hitRightPaddle) {
    ballXspeed = -ballYspeed;
+   console.log("ball hit left paddle");
+ }else if (hitLeftPaddle) {
+   ballXspeed = -ballXspeed;
    console.log("ball hit right paddle");
  }
 }
@@ -170,17 +174,13 @@ function paddleInteract(){
   // fill(255);
   // text(MIN+" : "+SEC,280,30);
 
-  if (ballX > width) {
+  if (ballX > canvasWidth) {
      failsound.play();
-     console.log("fail sound right");
   }else if (ballX < 0) {
      failsound.play();
-      console.log("fail sound left");
-  }if (ballX > width) {
+  }if (ballX > canvasWidth) {
     leftscore += 1;
-     console.log("Left:" + leftscore);
   }else if (ballX < 0) {
     rightscore += 1;
-     console.log("Right:" + rightscore);
   }
 }
