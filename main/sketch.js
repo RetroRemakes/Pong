@@ -25,8 +25,6 @@ var hitLeftPaddle = false;
 //var z = keyCode = 90 for azerty keyboards
 var w = keyCode = 87;
 var s = keyCode = 83;
-
-
 var leftscore = 0;
 var rightscore = 0;
 var failsound, hitsound;
