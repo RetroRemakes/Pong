@@ -1,11 +1,54 @@
-html, body {
-  height: 100%;
-  background: #ffbf00;
+body{
+	margin: 0;
+	padding: 0;
+	overflow-y:auto;
+ }
+
+ #ponglogo{
+	 left: 525px;
+	 top: 5px;
+	 position: relative;
+	 width: 200px;
+	 height: 58px;
 }
 
-#sketch-holder {
-  position: relative;
-  top: 30%;
-  left: 30%;
-  margin-top: -50px;
-} 
+#PLayer1{
+	 left: 370px;
+	 top: 135px;
+	 position: relative;
+	 width: 675px;
+	 height: 90px;
+}
+
+#PLayer1 img{
+	width: 575px;
+	height: 140px;
+}
+
+#sketch-holder{
+	position: relative;
+	left: 360px;
+	top: 30px;
+	width: 500px;
+	height: 300px;
+}
+#back-button {
+    position: fixed;
+    top: 20px;
+    left: 30px;
+    border: none;
+    outline: none;
+    background-color: #808080;
+    cursor: pointer;
+		height: 40px;
+		width: 40px;
+    border-radius: 10px;
+}
+
+#back-button:hover {
+    background-color: #bfbfbf;
+}
+#back-button img{
+	height: 16px;
+	width: 16px;
+}

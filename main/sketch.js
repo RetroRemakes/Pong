@@ -9,11 +9,11 @@ var rectMove = {
   RMoveX: 10,
   LMoveY: 150,
   LMoveX: 580,
-}; 
+};
 var rectSize = {
-  RrectH: 60,
+  RrectH: 80,
   RrectW: 10,
-  LrectH: 60,
+  LrectH: 80,
   LrectW: 10,
 };
 
