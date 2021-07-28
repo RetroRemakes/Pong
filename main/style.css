@@ -13,7 +13,7 @@ body{
 }
 
 #PLayer1{
-	 left: 37%;
+	 left: 30%;
 	 top: 135px;
 	 position: relative;
 	 width: 675px;
@@ -21,8 +21,8 @@ body{
 }
 
 #PLayer1 img{
-	width: 675px;
-	height: 210px;
+	width: 770px;
+	height: 240px;
 }
 
 #sketch-holder{
