@@ -5,15 +5,15 @@ body{
  }
 
  #ponglogo{
-	 left: 525px;
+	 left: 45%;
 	 top: 5px;
 	 position: relative;
 	 width: 200px;
-	 height: 58px;
+	/*height: 58px;*/
 }
 
 #PLayer1{
-	 left: 370px;
+	 left: 37%;
 	 top: 135px;
 	 position: relative;
 	 width: 675px;
@@ -21,13 +21,13 @@ body{
 }
 
 #PLayer1 img{
-	width: 575px;
-	height: 140px;
+	width: 675px;
+	height: 210px;
 }
 
 #sketch-holder{
 	position: relative;
-	left: 360px;
+	left: 35%;
 	top: 30px;
 	width: 500px;
 	height: 300px;
